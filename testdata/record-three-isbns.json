@@ -1,0 +1,31 @@
+{
+ "_note": "synthetic knihovny.cz API answers; the books, people and texts are invented",
+ "resultCount": 1,
+ "records": [
+  {
+   "id": "nkp.NKC01-900000006",
+   "title": "Vzorová kniha",
+   "authors": {
+    "primary": {
+     "Jana Testová": []
+    },
+    "secondary": {},
+    "corporate": []
+   },
+   "publishers": [],
+   "publicationDates": [],
+   "isbns": [
+    "978-80-900000-2-5",
+    "978-80-900000-3-2",
+    "978-80-900010-0-8"
+   ],
+   "summary": [],
+   "formats": [
+    "0/BOOKS/"
+   ],
+   "playingTimes": [],
+   "fullRecord": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record>\n<leader>02441nam a2200493 i 4500</leader>\n<controlfield tag=\"008\">220523s2020    xr a   g      000 j cze  </controlfield>\n<datafield tag=\"020\" ind1=\" \" ind2=\" \"><subfield code=\"a\">978-80-900000-2-5</subfield><subfield code=\"q\">(brož.)</subfield></datafield>\n<datafield tag=\"020\" ind1=\" \" ind2=\" \"><subfield code=\"a\">978-80-900000-3-2</subfield><subfield code=\"q\">(e-kniha)</subfield></datafield>\n<datafield tag=\"020\" ind1=\" \" ind2=\" \"><subfield code=\"a\">978-80-900010-0-8</subfield></datafield>\n<datafield tag=\"245\" ind1=\"1\" ind2=\"0\"><subfield code=\"a\">Vzorová kniha</subfield></datafield>\n</record></collection>"
+  }
+ ],
+ "status": "OK"
+}

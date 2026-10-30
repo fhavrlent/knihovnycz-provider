@@ -1,0 +1,13 @@
+{
+ "_note": "synthetic knihovny.cz API answers; the books, people and texts are invented",
+ "resultCount": 1,
+ "records": [
+  {
+   "id": "mkbad.1",
+   "title": "",
+   "authors": {},
+   "fullRecord": ""
+  }
+ ],
+ "status": "OK"
+}

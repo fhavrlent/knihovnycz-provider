@@ -1,0 +1,133 @@
+# Builds the image and pushes it to GHCR when a release tag is pushed: `v0.2.0` publishes
+# ghcr.io/<owner>/knihovnycz-provider as 0.2.0, 0.2 and latest.
+# Each architecture builds on its own native runner, because compiling arm64 under emulation takes
+# over half an hour; the merge job then joins the two into one multi-arch tag. Adapted from
+# bookorbit/bookorbit-metadata-providers.
+name: Publish
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+      image: ${{ steps.release.outputs.image }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read the version from the tag
+        id: release
+        env:
+          TAG: ${{ github.ref_name }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          version="${TAG#v}"
+          case "$version" in
+            *[!0-9.]* | "" ) echo "::error::tag $TAG is not v<major.minor.patch>"; exit 1 ;;
+          esac
+          # BookOrbit keys its cache on the version /provider/info reports, so it must match the tag.
+          grep -q "pub const VERSION: &str = \"$version\";" src/main.rs \
+            || { echo "::error::VERSION in src/main.rs is not $version"; exit 1; }
+          {
+            echo "version=$version"
+            echo "image=ghcr.io/$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')/knihovnycz-provider"
+          } >> "$GITHUB_OUTPUT"
+
+  # Nothing is built unless the code passes every check, offline and against the real API.
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo test
+      # One test at a time, so the API sees one provider's worth of requests.
+      - run: cargo test live -- --ignored --test-threads=1
+
+  build:
+    needs: [release, test]
+    strategy:
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
+
+      - uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Pushed untagged, by digest only; the merge job tags it.
+      - id: build
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          platforms: linux/${{ matrix.arch }}
+          labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          outputs: type=image,name=${{ needs.release.outputs.image }},push-by-digest=true,name-canonical=true,push=true
+
+      - name: Keep the digest for the merge job
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/digests"
+          touch "$RUNNER_TEMP/digests/${DIGEST#sha256:}"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: digest-${{ matrix.arch }}
+          path: ${{ runner.temp }}/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    needs: [release, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          path: ${{ runner.temp }}/digests
+          pattern: digest-*
+          merge-multiple: true
+
+      - uses: docker/setup-buildx-action@v4
+
+      - uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag both architectures as one image
+        working-directory: ${{ runner.temp }}/digests
+        env:
+          IMAGE: ${{ needs.release.outputs.image }}
+          VERSION: ${{ needs.release.outputs.version }}
+          SOURCE: https://github.com/${{ github.repository }}
+        run: |
+          refs=()
+          for digest in *; do refs+=("$IMAGE@sha256:$digest"); done
+          docker buildx imagetools create \
+            --annotation "index:org.opencontainers.image.source=$SOURCE" \
+            -t "$IMAGE:$VERSION" -t "$IMAGE:${VERSION%.*}" -t "$IMAGE:latest" \
+            "${refs[@]}"
+          docker buildx imagetools inspect "$IMAGE:$VERSION"

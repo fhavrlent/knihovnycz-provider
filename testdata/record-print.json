@@ -1,0 +1,35 @@
+{
+ "_note": "synthetic knihovny.cz API answers; the books, people and texts are invented",
+ "resultCount": 1,
+ "records": [
+  {
+   "id": "nkp.NKC01-900000001",
+   "title": "Kronika mlhy. I., Tichý přístav",
+   "authors": {
+    "primary": {
+     "Jana Testová, 1970-": []
+    },
+    "secondary": {},
+    "corporate": []
+   },
+   "publishers": [
+    "Vzorové nakladatelství,"
+   ],
+   "publicationDates": [
+    "2001"
+   ],
+   "isbns": [
+    "978-80-900000-2-5"
+   ],
+   "summary": [
+    "Sbírka povídek z přístavního města, nad kterým se mlha nikdy nezvedne."
+   ],
+   "formats": [
+    "0/BOOKS/"
+   ],
+   "playingTimes": [],
+   "fullRecord": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record>\n<leader>02441nam a2200493 i 4500</leader>\n<controlfield tag=\"008\">220523s2001    xr a   g      000 j cze  </controlfield>\n<datafield tag=\"020\" ind1=\" \" ind2=\" \"><subfield code=\"a\">978-80-900000-2-5</subfield><subfield code=\"q\">(vázáno)</subfield></datafield>\n<datafield tag=\"041\" ind1=\"1\" ind2=\" \"><subfield code=\"a\">cze</subfield><subfield code=\"h\">ger</subfield></datafield>\n<datafield tag=\"100\" ind1=\"1\" ind2=\" \"><subfield code=\"a\">Testová, Jana,</subfield><subfield code=\"d\">1970-</subfield><subfield code=\"4\">aut</subfield></datafield>\n<datafield tag=\"245\" ind1=\"1\" ind2=\"0\"><subfield code=\"a\">Kronika mlhy.</subfield><subfield code=\"n\">I.,</subfield><subfield code=\"p\">Tichý přístav /</subfield><subfield code=\"c\">Jana Testová</subfield></datafield>\n<datafield tag=\"264\" ind1=\" \" ind2=\"1\"><subfield code=\"a\">Praha :</subfield><subfield code=\"b\">Vzorové nakladatelství,</subfield><subfield code=\"c\">2001</subfield></datafield>\n<datafield tag=\"300\" ind1=\" \" ind2=\" \"><subfield code=\"a\">312 stran :</subfield><subfield code=\"b\">ilustrace ;</subfield><subfield code=\"c\">21 cm</subfield></datafield>\n<datafield tag=\"490\" ind1=\"1\" ind2=\" \"><subfield code=\"a\">Vzorová edice ;</subfield><subfield code=\"v\">3</subfield></datafield>\n<datafield tag=\"520\" ind1=\"2\" ind2=\" \"><subfield code=\"a\">Sbírka povídek z přístavního města, nad kterým se mlha nikdy nezvedne.</subfield></datafield>\n<datafield tag=\"655\" ind1=\" \" ind2=\"7\"><subfield code=\"a\">české povídky</subfield><subfield code=\"2\">czenas</subfield></datafield>\n<datafield tag=\"655\" ind1=\" \" ind2=\"7\"><subfield code=\"a\">fantasy povídky</subfield><subfield code=\"2\">czenas</subfield></datafield>\n<datafield tag=\"655\" ind1=\" \" ind2=\"7\"><subfield code=\"a\">audioknihy</subfield><subfield code=\"2\">czenas</subfield></datafield>\n<datafield tag=\"655\" ind1=\" \" ind2=\"9\"><subfield code=\"a\">Czech short stories</subfield><subfield code=\"2\">eczenas</subfield></datafield>\n<datafield tag=\"700\" ind1=\"1\" ind2=\" \"><subfield code=\"a\">Překladatel, Petr,</subfield><subfield code=\"d\">1960-</subfield><subfield code=\"4\">trl</subfield></datafield>\n</record></collection>"
+  }
+ ],
+ "status": "OK"
+}

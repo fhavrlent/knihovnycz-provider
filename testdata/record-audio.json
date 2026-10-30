@@ -1,0 +1,32 @@
+{
+ "_note": "synthetic knihovny.cz API answers; the books, people and texts are invented",
+ "resultCount": 1,
+ "records": [
+  {
+   "id": "kjm.KjmUsCat*900",
+   "title": "Tichý přístav",
+   "authors": {
+    "primary": {
+     "Jana Testová": []
+    },
+    "secondary": {},
+    "corporate": []
+   },
+   "publishers": [],
+   "publicationDates": [
+    "2015"
+   ],
+   "isbns": [],
+   "summary": [
+    "Audiokniha všech povídek ze sbírky Tichý přístav."
+   ],
+   "formats": [
+    "0/AUDIO/",
+    "1/AUDIO/CD/"
+   ],
+   "playingTimes": [],
+   "fullRecord": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record>\n<leader>02441nam a2200493 i 4500</leader>\n<controlfield tag=\"008\">220523s2015    xr a   g      000 j cze  </controlfield>\n<datafield tag=\"024\" ind1=\"3\" ind2=\" \"><subfield code=\"a\">8590000000005</subfield></datafield>\n<datafield tag=\"245\" ind1=\"1\" ind2=\"0\"><subfield code=\"a\">Tichý přístav</subfield><subfield code=\"h\">[zvukový záznam] /</subfield><subfield code=\"c\">Jana Testová</subfield></datafield>\n<datafield tag=\"300\" ind1=\" \" ind2=\" \"><subfield code=\"a\">1 zvuková deska (9 hod., 41 min.) :</subfield><subfield code=\"b\">digital, MP3 ;</subfield><subfield code=\"c\">12 cm</subfield></datafield>\n<datafield tag=\"306\" ind1=\" \" ind2=\" \"><subfield code=\"a\">094100</subfield></datafield>\n<datafield tag=\"511\" ind1=\"0\" ind2=\" \"><subfield code=\"a\">Čte Alena Zkušební ; hudba Hugo Modelový</subfield></datafield>\n<datafield tag=\"655\" ind1=\" \" ind2=\"7\"><subfield code=\"a\">české povídky</subfield><subfield code=\"2\">czenas</subfield></datafield>\n<datafield tag=\"655\" ind1=\" \" ind2=\"7\"><subfield code=\"a\">kompaktní disky</subfield><subfield code=\"2\">czenas</subfield></datafield>\n<datafield tag=\"700\" ind1=\"1\" ind2=\" \"><subfield code=\"a\">Vzorový, Bohdan</subfield><subfield code=\"4\">nrt</subfield></datafield>\n</record></collection>"
+  }
+ ],
+ "status": "OK"
+}

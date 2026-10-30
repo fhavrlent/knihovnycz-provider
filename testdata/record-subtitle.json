@@ -1,0 +1,27 @@
+{
+ "_note": "synthetic knihovny.cz API answers; the books, people and texts are invented",
+ "resultCount": 1,
+ "records": [
+  {
+   "id": "nkp.NKC01-900000007",
+   "title": "Vzorník : úvod do všeho",
+   "authors": {
+    "primary": {
+     "Jana Testová": []
+    },
+    "secondary": {},
+    "corporate": []
+   },
+   "publishers": [],
+   "publicationDates": [],
+   "isbns": [],
+   "summary": [],
+   "formats": [
+    "0/BOOKS/"
+   ],
+   "playingTimes": [],
+   "fullRecord": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record>\n<leader>02441nam a2200493 i 4500</leader>\n<controlfield tag=\"008\">220523s2019    xr a   g      000 j cze  </controlfield>\n<datafield tag=\"245\" ind1=\"1\" ind2=\"0\"><subfield code=\"a\">Vzorník :</subfield><subfield code=\"b\">úvod do všeho /</subfield><subfield code=\"c\">Jana Testová</subfield></datafield>\n</record></collection>"
+  }
+ ],
+ "status": "OK"
+}
